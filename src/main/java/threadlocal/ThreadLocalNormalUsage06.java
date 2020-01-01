@@ -15,7 +15,7 @@ public class ThreadLocalNormalUsage06 {
 }
 
 class Service1 {
-    public void process() {
+    void process() {
         User user = new User("tom");
         UserContextHolder.holder.set(user);
         new Service2().process();
@@ -31,7 +31,7 @@ class Service2 {
 }
 
 class Service3 {
-    public void process() {
+    void process() {
         User user = UserContextHolder.holder.get();
         System.out.println("Service3拿到用户名： " + user.name);
     }
