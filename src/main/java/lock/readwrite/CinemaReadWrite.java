@@ -38,9 +38,15 @@ public class CinemaReadWrite {
     }
 
     public static void main(String[] args) {
-        new Thread(CinemaReadWrite::read, "Thread1").start();
+//        new Thread(CinemaReadWrite::read, "Thread1").start();
+//        new Thread(CinemaReadWrite::read, "Thread2").start();
+//        new Thread(CinemaReadWrite::write, "Thread3").start();
+//        new Thread(CinemaReadWrite::write, "Thread4").start();
+
+        new Thread(CinemaReadWrite::write, "Thread1").start();
         new Thread(CinemaReadWrite::read, "Thread2").start();
-        new Thread(CinemaReadWrite::write, "Thread3").start();
+        new Thread(CinemaReadWrite::read, "Thread3").start();
         new Thread(CinemaReadWrite::write, "Thread4").start();
+        new Thread(CinemaReadWrite::read, "Thread5").start();
     }
 }
