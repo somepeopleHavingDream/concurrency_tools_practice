@@ -7,7 +7,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * 2020/02/13 20:50
  */
 public class UnfairBargeDemo {
-    private static ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock(false);
+    private static ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock(true);
+//    private static ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock(false);
 
     private static ReentrantReadWriteLock.ReadLock readLock = reentrantReadWriteLock.readLock();
     private static ReentrantReadWriteLock.WriteLock writeLock = reentrantReadWriteLock.writeLock();
