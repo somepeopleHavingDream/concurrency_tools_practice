@@ -11,13 +11,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AtomicIntegerDemo1 implements Runnable {
     private static final AtomicInteger atomicInteger = new AtomicInteger();
 
-    public void incrementAtomic() {
+    private void incrementAtomic() {
         atomicInteger.getAndIncrement();
     }
 
     private static volatile int basicCount = 0;
 
-    public synchronized void incrementBasic() {
+    private synchronized void incrementBasic() {
         basicCount++;
     }
 
