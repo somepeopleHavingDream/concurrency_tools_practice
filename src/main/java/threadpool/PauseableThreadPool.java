@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class PauseableThreadPool extends ThreadPoolExecutor {
     private final ReentrantLock reentrantLock = new ReentrantLock();
-    private Condition unpaused = reentrantLock.newCondition();
+    private Condition unPaused = reentrantLock.newCondition();
     private boolean isPaused;
 //    private Boolean isPaused;
 
@@ -40,7 +40,7 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
         reentrantLock.lock();
         try {
             while (isPaused) {
-                unpaused.await();
+                unPaused.await();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
 
         try {
             isPaused = false;
-            unpaused.signalAll();
+            unPaused.signalAll();
         } finally {
             reentrantLock.unlock();
         }
