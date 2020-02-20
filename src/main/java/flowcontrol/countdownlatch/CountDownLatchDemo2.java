@@ -5,33 +5,34 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 工厂中，质检，5个工人检查，所有人都认为通过才通过
+ * 模拟100米跑步，5名选手都准备好了，只等裁判员一声令下，所有人同时开始跑步
  *
  * @author yangxin
- * 2020/02/20 11:21
+ * 2020/02/20 13:46
  */
-public class CountDownLatchDemo1 {
+public class CountDownLatchDemo2 {
     public static void main(String[] args) throws InterruptedException {
-        CountDownLatch countDownLatch = new CountDownLatch(5);
+        CountDownLatch countDownLatch = new CountDownLatch(1);
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 5; i++) {
+//            int no = i + 1;
             final int no = i + 1;
             Runnable runnable = () -> {
+                System.out.println("No." + no + "准备完毕，等待发令枪");
                 try {
-                    Thread.sleep((long) (Math.random() * 10000));
-                    System.out.println("No." + no + "完成了检查。");
+                    countDownLatch.await();
+                    System.out.println("No." + no + "开始跑步了");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                } finally {
-                    countDownLatch.countDown();
                 }
             };
-
             executorService.submit(runnable);
         }
-        System.out.println("等待5个人检查完……");
-        countDownLatch.await();
-        System.out.println("所有人都完成了工作，进入下一个环节。");
+
+        // 裁判员检查发令枪...
+        Thread.sleep(5000);
+        System.out.println("发令枪响，比赛开始！");
+        countDownLatch.countDown();
         executorService.shutdown();
     }
 }
