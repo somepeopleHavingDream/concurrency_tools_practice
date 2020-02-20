@@ -53,7 +53,45 @@ public class ConditionDemo2 {
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     * @author yangxin
+     * 2020/02/20 20:05
+     */
+    class Producer extends Thread {
 
+        @Override
+        public void run() {
+            try {
+                produce();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void produce() throws InterruptedException {
+            while (true) {
+                lock.lock();
+                try {
+                    while (queue.size() == queueSize) {
+                        System.out.println("队列满，等待有空余");
+                        notFull.await();
+                    }
+
+                    queue.offer(1);
+                    notEmpty.signalAll();
+                    System.out.println("往队列里插入了一个数据，队列剩余空间" + (queueSize - queue.size()));
+                } finally {
+                    lock.unlock();
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        ConditionDemo2 conditionDemo2 = new ConditionDemo2();
+        Producer producer = conditionDemo2.new Producer();
+        Consumer consumer = conditionDemo2.new Consumer();
+        producer.start();
+        consumer.start();
     }
 }
