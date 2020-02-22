@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Cache1 {
     private final Map<String, Integer> cache = new HashMap<>();
 
-    private Integer compute(String userId) throws InterruptedException {
+    private synchronized Integer compute(String userId) throws InterruptedException {
         // 先检查HashMap里面有没有保存过之前的计算结果
         Integer result = cache.get(userId);
         if (result == null) {
