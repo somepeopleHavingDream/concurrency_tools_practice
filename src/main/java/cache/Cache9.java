@@ -38,14 +38,14 @@ public class Cache9<T, R> implements Computable<T, R> {
                 return future.get();
             } catch (CancellationException e) {
                 System.out.println("被取消了");
-                e.printStackTrace();
+                cache.remove(arg);
                 throw e;
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                cache.remove(arg);
                 throw e;
             } catch (ExecutionException e) {
-                e.printStackTrace();
                 System.out.println("计算错误，需要重试");
+                cache.remove(arg);
             }
         }
     }

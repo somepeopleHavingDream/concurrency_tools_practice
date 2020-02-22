@@ -12,7 +12,7 @@ public class MayFail implements Computable<String, Integer> {
     @Override
     public Integer compute(String arg) throws Exception {
         double random = Math.random();
-        if (random > 0.95) {
+        if (random > 0.05) {
             throw new IOException("读取文件出错");
         }
 
