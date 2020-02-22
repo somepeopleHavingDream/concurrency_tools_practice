@@ -18,7 +18,7 @@ public class Cache10<T, R> implements Computable<T, R> {
     private final Computable<T, R> computable;
     private final static ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
 
-    private Cache10(Computable<T, R> computable) {
+    Cache10(Computable<T, R> computable) {
         this.computable = computable;
     }
 
