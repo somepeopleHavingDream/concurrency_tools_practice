@@ -1,7 +1,10 @@
-package cache.computable;
+package cache;
 
+import cache.computable.Computable;
+import cache.computable.ExpensiveFunction;
+
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 缩小了synchronized额粒度，提高性能，但是依然并发不安全
@@ -9,11 +12,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author yangxin
  * 2020/02/22 11:36
  */
-public class Cache5<T, R> implements Computable<T, R> {
-    private final Map<T, R> cache = new ConcurrentHashMap<>();
+public class Cache4<T, R> implements Computable<T, R> {
+    private final Map<T, R> cache = new HashMap<>();
     private final Computable<T, R> computable;
 
-    private Cache5(Computable<T, R> computable) {
+    private Cache4(Computable<T, R> computable) {
         this.computable = computable;
     }
 
@@ -23,14 +26,16 @@ public class Cache5<T, R> implements Computable<T, R> {
         R result = cache.get(arg);
         if (result == null) {
             result = computable.compute(arg);
-            cache.put(arg, result);
+            synchronized (this) {
+                cache.put(arg, result);
+            }
         }
 
         return result;
     }
 
     public static void main(String[] args) throws Exception {
-        Computable<String, Integer> expensiveComputer = new Cache5<>(new ExpensiveFunction());
+        Computable<String, Integer> expensiveComputer = new Cache4<>(new ExpensiveFunction());
         Integer result = expensiveComputer.compute("666");
         System.out.println("第一次计算结果：" + result);
         result = expensiveComputer.compute("666");
