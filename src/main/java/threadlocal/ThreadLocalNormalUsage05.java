@@ -34,6 +34,10 @@ public class ThreadLocalNormalUsage05 {
     }
 }
 
+/**
+ * @author yangxin
+ * 2020/02/22 22:04
+ */
 class ThreadSafeFormatter {
     static ThreadLocal<SimpleDateFormat> simpleDateFormatThreadLocal
             = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));
