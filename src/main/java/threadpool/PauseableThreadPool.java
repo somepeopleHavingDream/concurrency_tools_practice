@@ -11,10 +11,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * 2020/01/01 21:30
  */
 public class PauseableThreadPool extends ThreadPoolExecutor {
+
     private final ReentrantLock reentrantLock = new ReentrantLock();
-    private Condition unPaused = reentrantLock.newCondition();
+    private final Condition unPaused = reentrantLock.newCondition();
     private boolean isPaused;
-//    private Boolean isPaused;
 
     private PauseableThreadPool(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
