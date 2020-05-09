@@ -7,5 +7,6 @@ package immutable;
  * 2020/02/15 21:47
  */
 public class FinalMethodDemo {
+
     private int a;
 }
