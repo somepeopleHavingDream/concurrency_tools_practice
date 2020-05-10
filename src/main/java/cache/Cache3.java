@@ -13,6 +13,7 @@ import java.util.Map;
  * 2020/02/22 11:28
  */
 public class Cache3<T, R> implements Computable<T, R> {
+
     private final Map<T, R> cache = new HashMap<>();
     private final Computable<T, R> computable;
 
@@ -32,7 +33,7 @@ public class Cache3<T, R> implements Computable<T, R> {
         return result;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Computable<String, Integer> expensiveComputer = new Cache3<>(new ExpensiveFunction());
 
         new Thread(() -> {
@@ -45,7 +46,6 @@ public class Cache3<T, R> implements Computable<T, R> {
             }
         }).start();
 
-
         new Thread(() -> {
             Integer result;
             try {
@@ -56,7 +56,7 @@ public class Cache3<T, R> implements Computable<T, R> {
             }
         }).start();
 
-        Thread.sleep(6000);
+//        Thread.sleep(6000);
 
         new Thread(() -> {
             Integer result;

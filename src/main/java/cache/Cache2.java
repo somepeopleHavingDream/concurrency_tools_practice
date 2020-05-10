@@ -13,6 +13,7 @@ import java.util.Map;
  * 2020/02/22 11:18
  */
 public class Cache2<T, R> implements Computable<T, R> {
+
     private final Map<T, R> cache = new HashMap<>();
     private final Computable<T, R> computable;
 

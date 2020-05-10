@@ -15,6 +15,7 @@ import java.util.concurrent.FutureTask;
  * 2020/02/22 20:11
  */
 public class Cache8<T, R> implements Computable<T, R> {
+
     private final Map<T, Future<R>> cache = new ConcurrentHashMap<>();
     private final Computable<T, R> computable;
 
@@ -38,7 +39,7 @@ public class Cache8<T, R> implements Computable<T, R> {
         return future.get();
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Computable<String, Integer> expensiveComputer = new Cache8<>(new ExpensiveFunction());
 
         new Thread(() -> {
@@ -51,7 +52,7 @@ public class Cache8<T, R> implements Computable<T, R> {
             }
         }).start();
 
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
 
         new Thread(() -> {
             Integer result;

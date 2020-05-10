@@ -13,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 2020/02/22 11:36
  */
 public class Cache6<T, R> implements Computable<T, R> {
+
     private final Map<T, R> cache = new ConcurrentHashMap<>();
     private final Computable<T, R> computable;
 
@@ -44,7 +45,6 @@ public class Cache6<T, R> implements Computable<T, R> {
                 e.printStackTrace();
             }
         }).start();
-
 
         new Thread(() -> {
             Integer result;

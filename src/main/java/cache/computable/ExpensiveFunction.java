@@ -8,6 +8,7 @@ package cache.computable;
  * 2020/02/22 11:02
  */
 public class ExpensiveFunction implements Computable<String, Integer> {
+
     @Override
     public Integer compute(String arg) throws Exception {
         Thread.sleep(5000);

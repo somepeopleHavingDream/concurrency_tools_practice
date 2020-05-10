@@ -14,8 +14,9 @@ import java.util.concurrent.Executors;
  * 2020/02/22 21:45
  */
 public class Cache12 {
-    private static Computable<String, Integer> computable = new Cache10<>(new ExpensiveFunction());
-    private static CountDownLatch countDownLatch = new CountDownLatch(1);
+
+    private static final Computable<String, Integer> computable = new Cache10<>(new ExpensiveFunction());
+    private static final CountDownLatch countDownLatch = new CountDownLatch(1);
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(100);
@@ -51,8 +52,10 @@ public class Cache12 {
  * 2020/02/22 22:04
  */
 class ThreadSafeFormatter {
+
     static ThreadLocal<SimpleDateFormat> dateFormatThreadLocal
             = new ThreadLocal<SimpleDateFormat>() {
+
         /**
          * 每个线程会调用本方法一次，用于初始化
          */

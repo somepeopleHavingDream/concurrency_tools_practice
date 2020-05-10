@@ -13,6 +13,7 @@ import java.util.concurrent.*;
  * 2020/02/22 20:11
  */
 public class Cache9<T, R> implements Computable<T, R> {
+
     private final Map<T, Future<R>> cache = new ConcurrentHashMap<>();
     private final Computable<T, R> computable;
 

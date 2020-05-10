@@ -8,5 +8,6 @@ package cache.computable;
  * 2020/02/22 11:00
  */
 public interface Computable<T, R> {
+
     R compute(T arg) throws Exception;
 }

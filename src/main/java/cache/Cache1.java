@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
  * 2020/02/22 10:44
  */
 public class Cache1 {
+
     private final Map<String, Integer> cache = new HashMap<>();
 
     private synchronized Integer compute(String userId) throws InterruptedException {
