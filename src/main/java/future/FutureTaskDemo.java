@@ -9,6 +9,7 @@ import java.util.concurrent.*;
  * 2020/02/21 22:33
  */
 public class FutureTaskDemo {
+
     public static void main(String[] args) {
         Task task = new Task();
         FutureTask<Integer> futureTask = new FutureTask<>(task);
