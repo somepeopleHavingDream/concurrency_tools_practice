@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
  * 2020/02/20 11:21
  */
 public class CountDownLatchDemo1 {
+
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(5);
         ExecutorService executorService = Executors.newFixedThreadPool(5);
