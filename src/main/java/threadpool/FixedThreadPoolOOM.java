@@ -11,7 +11,8 @@ import java.util.concurrent.TimeUnit;
  * 2020/01/01 20:37
  */
 public class FixedThreadPoolOOM {
-    private static ExecutorService executorService = Executors.newFixedThreadPool(1);
+
+    private static final ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     /**
      * -Xmx8m -Xms8m
@@ -24,6 +25,7 @@ public class FixedThreadPoolOOM {
 }
 
 class SubThread implements Runnable {
+
     @Override
     public void run() {
         try {

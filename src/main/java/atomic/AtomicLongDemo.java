@@ -34,7 +34,8 @@ public class AtomicLongDemo {
 
     @AllArgsConstructor
     private static class Task implements Runnable {
-        private AtomicLong counter;
+
+        private final AtomicLong counter;
 
         @Override
         public void run() {

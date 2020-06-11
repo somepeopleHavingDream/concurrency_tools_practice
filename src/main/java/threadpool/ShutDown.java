@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
  * 2020/01/01 21:13
  */
 public class ShutDown {
+
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         for (int i = 0; i < 1000; i++) {
@@ -30,6 +31,7 @@ public class ShutDown {
 }
 
 class ShutDownTask implements Runnable {
+
     @Override
     public void run() {
         try {

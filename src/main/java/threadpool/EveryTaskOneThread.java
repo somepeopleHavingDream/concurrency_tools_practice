@@ -7,6 +7,7 @@ package threadpool;
  * 2020/01/01 20:05
  */
 public class EveryTaskOneThread {
+
     public static void main(String[] args) {
         Thread thread = new Thread(new Task());
         thread.start();
