@@ -13,6 +13,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * 2020/01/02 20:44
  */
 public class AtomicLongDemo {
+
+    @SuppressWarnings("StatementWithEmptyBody")
     public static void main(String[] args) {
         AtomicLong counter = new AtomicLong(0);
 

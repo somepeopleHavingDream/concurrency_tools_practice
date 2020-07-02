@@ -11,11 +11,11 @@ import java.util.concurrent.Executors;
  * 2020/02/20 13:46
  */
 public class CountDownLatchDemo2 {
+
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 5; i++) {
-//            int no = i + 1;
             final int no = i + 1;
             Runnable runnable = () -> {
                 System.out.println("No." + no + "准备完毕，等待发令枪");
