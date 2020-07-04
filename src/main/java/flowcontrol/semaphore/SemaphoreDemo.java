@@ -11,7 +11,8 @@ import java.util.concurrent.Semaphore;
  * 2020/02/20 14:18
  */
 public class SemaphoreDemo {
-    private static Semaphore semaphore = new Semaphore(3, true);
+
+    private static final Semaphore semaphore = new Semaphore(3, true);
 
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(50);
