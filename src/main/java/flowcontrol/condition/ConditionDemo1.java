@@ -10,8 +10,9 @@ import java.util.concurrent.locks.ReentrantLock;
  * 2020/02/20 16:45
  */
 public class ConditionDemo1 {
-    private ReentrantLock lock = new ReentrantLock();
-    private Condition condition = lock.newCondition();
+
+    private final ReentrantLock lock = new ReentrantLock();
+    private final Condition condition = lock.newCondition();
 
     private void method1() throws InterruptedException {
         lock.lock();
