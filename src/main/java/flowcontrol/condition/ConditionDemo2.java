@@ -12,18 +12,20 @@ import java.util.concurrent.locks.ReentrantLock;
  * 2020/02/20 17:13
  */
 public class ConditionDemo2 {
-    private int queueSize = 10;
-    private PriorityQueue<Integer> queue = new PriorityQueue<>(queueSize);
 
-    private Lock lock = new ReentrantLock();
-    private Condition notFull = lock.newCondition();
-    private Condition notEmpty = lock.newCondition();
+    private final int queueSize = 10;
+    private final PriorityQueue<Integer> queue = new PriorityQueue<>(queueSize);
+
+    private final Lock lock = new ReentrantLock();
+    private final Condition notFull = lock.newCondition();
+    private final Condition notEmpty = lock.newCondition();
 
     /**
      * @author yangxin
      * 2020/02/20 17:27
      */
-    class Consumer extends Thread {
+    class Consumer implements Runnable {
+//    class Consumer extends Thread {
 
         @Override
         public void run() {
@@ -34,6 +36,7 @@ public class ConditionDemo2 {
             }
         }
 
+        @SuppressWarnings("InfiniteLoopStatement")
         private void consume() throws InterruptedException {
             while (true) {
                 lock.lock();
@@ -57,7 +60,8 @@ public class ConditionDemo2 {
      * @author yangxin
      * 2020/02/20 20:05
      */
-    class Producer extends Thread {
+    class Producer implements Runnable {
+//    class Producer extends Thread {
 
         @Override
         public void run() {
@@ -68,6 +72,7 @@ public class ConditionDemo2 {
             }
         }
 
+        @SuppressWarnings("InfiniteLoopStatement")
         private void produce() throws InterruptedException {
             while (true) {
                 lock.lock();
@@ -91,7 +96,9 @@ public class ConditionDemo2 {
         ConditionDemo2 conditionDemo2 = new ConditionDemo2();
         Producer producer = conditionDemo2.new Producer();
         Consumer consumer = conditionDemo2.new Consumer();
-        producer.start();
-        consumer.start();
+//        producer.start();
+//        consumer.start();
+        new Thread(producer).start();
+        new Thread(consumer).start();
     }
 }
