@@ -10,6 +10,7 @@ import java.util.concurrent.CyclicBarrier;
  * 2020/02/20 20:24
  */
 public class CyclicBarrierDemo {
+
     public static void main(String[] args) {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(5, CyclicBarrierDemo::run);
 
@@ -22,9 +23,14 @@ public class CyclicBarrierDemo {
         System.out.println("所有人都到场，大家统一出发！");
     }
 
+    /**
+     * @author yangxin
+     * 2020/07/09 14:39
+     */
     static class Task implements Runnable {
-        private int id;
-        private CyclicBarrier cyclicBarrier;
+
+        private final int id;
+        private final CyclicBarrier cyclicBarrier;
 
         Task(int id, CyclicBarrier cyclicBarrier) {
             this.id = id;
