@@ -10,7 +10,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * 2020/02/13 19:45
  */
 public class MustUnlock {
-    private static Lock lock = new ReentrantLock();
+
+    private static final Lock lock = new ReentrantLock();
 
     public static void main(String[] args) {
         lock.lock();

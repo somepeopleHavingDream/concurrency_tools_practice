@@ -12,10 +12,11 @@ import java.util.concurrent.locks.ReentrantLock;
  * 2020/02/12 19:51
  */
 public class TryLockDeadlock implements Runnable {
+
     private int flag = 1;
 
-    private static Lock lock1 = new ReentrantLock();
-    private static Lock lock2 = new ReentrantLock();
+    private static final Lock lock1 = new ReentrantLock();
+    private static final Lock lock2 = new ReentrantLock();
 
     public static void main(String[] args) {
         TryLockDeadlock r1 = new TryLockDeadlock();

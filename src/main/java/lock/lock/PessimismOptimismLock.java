@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 2020/02/12 20:30
  */
 public class PessimismOptimismLock {
+
     private int a;
 
     public static void main(String[] args) {

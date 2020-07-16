@@ -8,7 +8,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * 2020/02/12 20:08
  */
 public class LockInterruptibly implements Runnable {
-    private Lock lock = new ReentrantLock();
+
+    private final Lock lock = new ReentrantLock();
 
     public static void main(String[] args) {
         LockInterruptibly lockInterruptibly = new LockInterruptibly();
