@@ -9,6 +9,7 @@ import java.util.Vector;
  * 2020/02/17 19:39
  */
 public class VectorDemo {
+
     public static void main(String[] args) {
         Vector<String> vector = new Vector<>();
         vector.add("test");
