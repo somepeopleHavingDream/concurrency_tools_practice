@@ -10,6 +10,7 @@ import java.util.Map;
  * 2020/02/17 21:52
  */
 public class MapDemo {
+
     public static void main(String[] args) {
         Map<String, Integer> map = new HashMap<>();
         System.out.println(map.isEmpty());
