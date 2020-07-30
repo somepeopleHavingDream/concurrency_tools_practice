@@ -8,7 +8,8 @@ import java.util.Map;
  * 2020/02/17 22:00
  */
 public class HashMapEndlessLoop {
-    private static Map<Integer, String> map = new HashMap<>(2, 1.5f);
+
+    private static final Map<Integer, String> map = new HashMap<>(2, 1.5f);
 
     public static void main(String[] args) {
         map.put(5, "C");
