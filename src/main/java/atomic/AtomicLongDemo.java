@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author yangxin
  * 2020/01/02 20:44
  */
+@SuppressWarnings("DuplicatedCode")
 public class AtomicLongDemo {
 
     @SuppressWarnings("StatementWithEmptyBody")
