@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
  * 2020/01/02 16:44
  */
 public class AtomicIntegerFieldUpdaterDemo implements Runnable {
+
     private static Candidate tom;
     private static Candidate peter;
 

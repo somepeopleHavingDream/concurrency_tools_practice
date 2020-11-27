@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
  * 2020/01/02 15:58
  */
 public class AtomicArrayDemo {
+
     public static void main(String[] args) {
         AtomicIntegerArray atomicIntegerArray = new AtomicIntegerArray(1000);
 
@@ -48,7 +49,8 @@ public class AtomicArrayDemo {
 
 @AllArgsConstructor
 class Decrement implements Runnable {
-    private AtomicIntegerArray array;
+
+    private final AtomicIntegerArray array;
 
     @Override
     public void run() {
@@ -60,7 +62,8 @@ class Decrement implements Runnable {
 
 @AllArgsConstructor
 class Increment implements Runnable {
-    private AtomicIntegerArray array;
+
+    private final AtomicIntegerArray array;
 
     @Override
     public void run() {

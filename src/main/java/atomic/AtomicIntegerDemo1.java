@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 2020/01/02 11:48
  */
 public class AtomicIntegerDemo1 implements Runnable {
+
     private static final AtomicInteger atomicInteger = new AtomicInteger();
 
     private void incrementAtomic() {
