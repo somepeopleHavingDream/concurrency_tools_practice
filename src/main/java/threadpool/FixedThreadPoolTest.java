@@ -20,6 +20,10 @@ public class FixedThreadPoolTest {
     }
 }
 
+/**
+ * @author yangxin
+ * 2020/01/01 20:31
+ */
 class Task implements Runnable {
 
     @Override

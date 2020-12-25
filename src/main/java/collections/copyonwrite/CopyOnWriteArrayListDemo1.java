@@ -10,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * 2020/02/19 20:11
  */
 public class CopyOnWriteArrayListDemo1 {
+
     public static void main(String[] args) {
 //        List<String> list = new ArrayList<>();
         List<String> list = new CopyOnWriteArrayList<>();
@@ -20,16 +21,14 @@ public class CopyOnWriteArrayListDemo1 {
         list.add("4");
         list.add("5");
 
-        Iterator<String> iterator = list.iterator();
-        while (iterator.hasNext()) {
+        for (String s : list) {
             System.out.println("list is " + list);
-            String next = iterator.next();
-            System.out.println(next);
+            System.out.println(s);
 
-            if (next.equals("2")) {
+            if (s.equals("2")) {
                 list.remove("5");
             }
-            if (next.equals("3")) {
+            if (s.equals("3")) {
                 list.add("3 found");
             }
         }

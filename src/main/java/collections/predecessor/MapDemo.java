@@ -9,6 +9,7 @@ import java.util.Map;
  * @author yangxin
  * 2020/02/17 21:52
  */
+@SuppressWarnings("ConstantConditions")
 public class MapDemo {
 
     public static void main(String[] args) {

@@ -14,6 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * 2020/02/19 20:57
  */
 public class CopyOnWriteArrayListDemo2 {
+
     public static void main(String[] args) {
         List<Integer> list = new CopyOnWriteArrayList<>(new Integer[]{1, 2, 3});
         System.out.println(list);

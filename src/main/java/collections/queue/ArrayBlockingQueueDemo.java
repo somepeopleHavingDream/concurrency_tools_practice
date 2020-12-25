@@ -10,6 +10,7 @@ import java.util.concurrent.BlockingQueue;
  * @author yangxin
  */
 public class ArrayBlockingQueueDemo {
+
     public static void main(String[] args) {
         BlockingQueue<String> queue = new ArrayBlockingQueue<>(3);
 
@@ -25,7 +26,8 @@ public class ArrayBlockingQueueDemo {
  * 2020/02/19 21:28
  */
 class Interviewer implements Runnable {
-    private BlockingQueue<String> queue;
+
+    private final BlockingQueue<String> queue;
 
     public Interviewer(BlockingQueue<String> queue) {
         this.queue = queue;
@@ -57,7 +59,8 @@ class Interviewer implements Runnable {
  * 2020/02/19 21:28
  */
 class Consumer implements Runnable {
-    private BlockingQueue<String> queue;
+
+    private final BlockingQueue<String> queue;
 
     public Consumer(BlockingQueue<String> queue) {
         this.queue = queue;
@@ -70,6 +73,7 @@ class Consumer implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         try {
             String msg;
             while (!Objects.equals((msg = queue.take()), "stop")) {

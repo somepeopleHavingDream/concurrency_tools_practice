@@ -14,6 +14,7 @@ public class EveryTaskOneThread {
     }
 
     static class Task implements Runnable {
+
         @Override
         public void run() {
             System.out.println("执行了任务");
