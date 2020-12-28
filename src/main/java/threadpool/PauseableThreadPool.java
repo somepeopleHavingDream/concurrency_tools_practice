@@ -32,9 +32,9 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
     }
 
-
     @Override
     protected void beforeExecute(Thread t, Runnable r) {
+        // 父类ThreadPoolExecutor的beforeExecute是个空实现
         super.beforeExecute(t, r);
 
         reentrantLock.lock();
@@ -49,6 +49,9 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
         }
     }
 
+    /**
+     * 暂停
+     */
     private void pause() {
         reentrantLock.lock();
         try {
@@ -58,11 +61,15 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
         }
     }
 
+    /**
+     * 恢复
+     */
     private void resume() {
         reentrantLock.lock();
 
         try {
             isPaused = false;
+            // 必须在锁内唤醒所有条件，因为await方法会释放锁，因此这边需要先获得锁在唤醒条件
             unPaused.signalAll();
         } finally {
             reentrantLock.unlock();
