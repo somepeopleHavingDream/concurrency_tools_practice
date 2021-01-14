@@ -13,6 +13,7 @@ import java.util.concurrent.*;
  * 2020/02/21 21:56
  */
 public class Timeout {
+
     private static final Ad DEFAULT_AD = new Ad("无网络时候的默认广告");
     private static final ExecutorService executorService = Executors.newFixedThreadPool(10);
 

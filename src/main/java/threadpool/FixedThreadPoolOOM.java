@@ -12,14 +12,14 @@ import java.util.concurrent.TimeUnit;
  */
 public class FixedThreadPoolOOM {
 
-    private static final ExecutorService executorService = Executors.newFixedThreadPool(1);
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(1);
 
     /**
      * -Xmx8m -Xms8m
      */
     public static void main(String[] args) {
         for (int i = 0; i < Integer.MAX_VALUE; i++) {
-            executorService.execute(new SubThread());
+            EXECUTOR_SERVICE.execute(new SubThread());
         }
     }
 }

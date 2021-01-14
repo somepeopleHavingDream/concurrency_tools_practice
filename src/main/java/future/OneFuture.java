@@ -10,6 +10,7 @@ import java.util.concurrent.*;
  * 2020/02/021 20:55
  */
 public class OneFuture {
+
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         Future<Integer> future = executorService.submit(new CallableTask());

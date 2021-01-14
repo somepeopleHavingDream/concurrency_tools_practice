@@ -12,6 +12,7 @@ import java.util.concurrent.*;
  * 2020/02/21 21:17
  */
 public class MultiFutures {
+
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         List<Future<Integer>> futureList = new ArrayList<>();

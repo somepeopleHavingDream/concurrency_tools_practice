@@ -10,6 +10,7 @@ import java.util.concurrent.*;
  * 2020/02/21 21:27
  */
 public class GetException {
+
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(20);
         Future<Integer> future = executorService.submit(new CallableTask());

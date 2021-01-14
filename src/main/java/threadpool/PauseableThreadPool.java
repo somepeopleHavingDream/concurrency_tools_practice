@@ -12,8 +12,8 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class PauseableThreadPool extends ThreadPoolExecutor {
 
-    private final ReentrantLock reentrantLock = new ReentrantLock();
-    private final Condition unPaused = reentrantLock.newCondition();
+    private final ReentrantLock REENTRANT_LOCK = new ReentrantLock();
+    private final Condition UN_PAUSED = REENTRANT_LOCK.newCondition();
     private boolean isPaused;
 
     private PauseableThreadPool(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
@@ -37,15 +37,15 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
         // 父类ThreadPoolExecutor的beforeExecute是个空实现
         super.beforeExecute(t, r);
 
-        reentrantLock.lock();
+        REENTRANT_LOCK.lock();
         try {
             while (isPaused) {
-                unPaused.await();
+                UN_PAUSED.await();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            reentrantLock.unlock();
+            REENTRANT_LOCK.unlock();
         }
     }
 
@@ -53,11 +53,11 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
      * 暂停
      */
     private void pause() {
-        reentrantLock.lock();
+        REENTRANT_LOCK.lock();
         try {
             isPaused = true;
         } finally {
-            reentrantLock.unlock();
+            REENTRANT_LOCK.unlock();
         }
     }
 
@@ -65,14 +65,14 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
      * 恢复
      */
     private void resume() {
-        reentrantLock.lock();
+        REENTRANT_LOCK.lock();
 
         try {
             isPaused = false;
             // 必须在锁内唤醒所有条件，因为await方法会释放锁，因此这边需要先获得锁在唤醒条件
-            unPaused.signalAll();
+            UN_PAUSED.signalAll();
         } finally {
-            reentrantLock.unlock();
+            REENTRANT_LOCK.unlock();
         }
     }
 
