@@ -15,10 +15,10 @@ import java.util.concurrent.*;
 public class Timeout {
 
     private static final Ad DEFAULT_AD = new Ad("无网络时候的默认广告");
-    private static final ExecutorService executorService = Executors.newFixedThreadPool(10);
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(10);
 
     private void printAd() {
-        Future<Ad> adFuture = executorService.submit(new FetchAdTask());
+        Future<Ad> adFuture = EXECUTOR_SERVICE.submit(new FetchAdTask());
         Ad ad;
         try {
             ad = adFuture.get(2000, TimeUnit.MILLISECONDS);
@@ -33,7 +33,7 @@ public class Timeout {
             System.out.println("cancel的结果：" + cancel);
         }
 
-        executorService.shutdown();
+        EXECUTOR_SERVICE.shutdown();
         System.out.println(ad);
     }
 
@@ -49,6 +49,7 @@ public class Timeout {
     @Data
     @AllArgsConstructor
     private static class Ad {
+
         private String name;
     }
 

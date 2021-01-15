@@ -30,6 +30,8 @@ public class MultiFutures {
                 e.printStackTrace();
             }
         }
+
+        executorService.shutdown();
     }
 
     /**

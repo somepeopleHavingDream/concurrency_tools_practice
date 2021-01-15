@@ -18,13 +18,20 @@ public class FutureTaskDemo {
         executorService.submit(futureTask);
 
         try {
+            // get方法会阻塞当前线程
             System.out.println("task运行结果：" + futureTask.get());
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+
+        executorService.shutdown();
     }
 }
 
+/**
+ * @author yangxin
+ * 2020/02/21 22:33
+ */
 class Task implements Callable<Integer> {
 
     @Override
