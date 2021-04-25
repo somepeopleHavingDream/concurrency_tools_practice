@@ -10,10 +10,12 @@ import java.util.concurrent.TimeUnit;
  * @author yangxin
  * 2020/01/01 17:14
  */
+@SuppressWarnings({"AlibabaUndefineMagicConstant", "AlibabaAvoidManuallyCreateThread"})
 public class ThreadLocalNormalUsage01 {
+
     private String date(int seconds) {
         // 参数的单位是毫秒，从1970/01/01 00:00:00 gmt计时
-        Date date = new Date(1000 * seconds);
+        Date date = new Date(1000L * seconds);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         return simpleDateFormat.format(date);
     }

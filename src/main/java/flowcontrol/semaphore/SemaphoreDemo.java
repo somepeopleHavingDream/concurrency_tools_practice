@@ -10,9 +10,10 @@ import java.util.concurrent.Semaphore;
  * @author yangxin
  * 2020/02/20 14:18
  */
+@SuppressWarnings({"AlibabaThreadPoolCreation", "AlibabaUndefineMagicConstant"})
 public class SemaphoreDemo {
 
-    private static final Semaphore semaphore = new Semaphore(3, true);
+    private static final Semaphore SEMAPHORE = new Semaphore(3, true);
 
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(50);
@@ -27,7 +28,7 @@ public class SemaphoreDemo {
         @Override
         public void run() {
             try {
-                semaphore.acquire();
+                SEMAPHORE.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -41,7 +42,7 @@ public class SemaphoreDemo {
             }
 
             System.out.println(Thread.currentThread().getName() + "释放了许可证");
-            semaphore.release();
+            SEMAPHORE.release();
         }
     }
 }
