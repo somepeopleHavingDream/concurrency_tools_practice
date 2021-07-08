@@ -11,14 +11,14 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class MustUnlock {
 
-    private static final Lock lock = new ReentrantLock();
+    private static final Lock LOCK = new ReentrantLock();
 
     public static void main(String[] args) {
-        lock.lock();
+        LOCK.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "开始执行任务");
         } finally {
-            lock.unlock();
+            LOCK.unlock();
         }
     }
 }

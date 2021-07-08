@@ -17,7 +17,6 @@ public class ThreadLocalNormalUsage04 {
     private static final ExecutorService THREAD_POOL = Executors.newFixedThreadPool(10);
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-
     private String date(int seconds) {
         // 参数的单位是毫秒，从1970/01/01 00:00:00 gmt计时
         Date date = new Date(1000L * seconds);
