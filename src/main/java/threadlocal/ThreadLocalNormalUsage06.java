@@ -9,12 +9,14 @@ import lombok.AllArgsConstructor;
  * 2020/01/01 18:08
  */
 public class ThreadLocalNormalUsage06 {
+
     public static void main(String[] args) {
         new Service1().process();
     }
 }
 
 class Service1 {
+
     void process() {
         User user = new User("tom");
         UserContextHolder.holder.set(user);
@@ -23,6 +25,7 @@ class Service1 {
 }
 
 class Service2 {
+
     void process() {
         User user = UserContextHolder.holder.get();
         System.out.println("Service2拿到用户名： " + user.name);
@@ -31,6 +34,7 @@ class Service2 {
 }
 
 class Service3 {
+
     void process() {
         User user = UserContextHolder.holder.get();
         System.out.println("Service3拿到用户名： " + user.name);
@@ -40,9 +44,12 @@ class Service3 {
 
 @AllArgsConstructor
 class User {
+
     String name;
 }
 
+@SuppressWarnings("AlibabaThreadLocalShouldRemove")
 class UserContextHolder {
+
     static ThreadLocal<User> holder = new ThreadLocal<>();
 }

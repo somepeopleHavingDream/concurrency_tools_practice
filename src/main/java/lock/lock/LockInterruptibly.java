@@ -7,6 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author yangxin
  * 2020/02/12 20:08
  */
+@SuppressWarnings({"SpellCheckingInspection", "AlibabaAvoidManuallyCreateThread"})
 public class LockInterruptibly implements Runnable {
 
     private final Lock lock = new ReentrantLock();
