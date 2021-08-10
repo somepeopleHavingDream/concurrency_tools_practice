@@ -10,10 +10,11 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author yangxin
  * 2020/01/01 21:30
  */
+@SuppressWarnings("AlibabaUndefineMagicConstant")
 public class PauseableThreadPool extends ThreadPoolExecutor {
 
-    private final ReentrantLock REENTRANT_LOCK = new ReentrantLock();
-    private final Condition UN_PAUSED = REENTRANT_LOCK.newCondition();
+    private final ReentrantLock reentrantLock = new ReentrantLock();
+    private final Condition unPaused = reentrantLock.newCondition();
     private boolean isPaused;
 
     private PauseableThreadPool(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
@@ -37,15 +38,15 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
         // 父类ThreadPoolExecutor的beforeExecute是个空实现
         super.beforeExecute(t, r);
 
-        REENTRANT_LOCK.lock();
+        reentrantLock.lock();
         try {
             while (isPaused) {
-                UN_PAUSED.await();
+                unPaused.await();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            REENTRANT_LOCK.unlock();
+            reentrantLock.unlock();
         }
     }
 
@@ -53,11 +54,11 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
      * 暂停
      */
     private void pause() {
-        REENTRANT_LOCK.lock();
+        reentrantLock.lock();
         try {
             isPaused = true;
         } finally {
-            REENTRANT_LOCK.unlock();
+            reentrantLock.unlock();
         }
     }
 
@@ -65,14 +66,14 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
      * 恢复
      */
     private void resume() {
-        REENTRANT_LOCK.lock();
+        reentrantLock.lock();
 
         try {
             isPaused = false;
             // 必须在锁内唤醒所有条件，因为await方法会释放锁，因此这边需要先获得锁在唤醒条件
-            UN_PAUSED.signalAll();
+            unPaused.signalAll();
         } finally {
-            REENTRANT_LOCK.unlock();
+            reentrantLock.unlock();
         }
     }
 

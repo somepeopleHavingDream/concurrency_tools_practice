@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
  * @author yangxin
  * 2020/01/01 21:13
  */
+@SuppressWarnings({"AlibabaThreadPoolCreation", "AlibabaUndefineMagicConstant", "CommentedOutCode"})
 public class ShutDown {
 
     public static void main(String[] args) throws InterruptedException {

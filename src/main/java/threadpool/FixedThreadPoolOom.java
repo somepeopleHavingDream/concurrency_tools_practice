@@ -10,16 +10,17 @@ import java.util.concurrent.TimeUnit;
  * @author yangxin
  * 2020/01/01 20:37
  */
-public class FixedThreadPoolOOM {
+@SuppressWarnings("AlibabaThreadPoolCreation")
+public class FixedThreadPoolOom {
 
-    private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(1);
+    private static final ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     /**
      * -Xmx8m -Xms8m
      */
     public static void main(String[] args) {
         for (int i = 0; i < Integer.MAX_VALUE; i++) {
-            EXECUTOR_SERVICE.execute(new SubThread());
+            executorService.execute(new SubThread());
         }
     }
 }

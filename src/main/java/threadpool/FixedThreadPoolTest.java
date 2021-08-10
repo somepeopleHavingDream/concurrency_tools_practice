@@ -10,11 +10,11 @@ import java.util.concurrent.TimeUnit;
  * @author yangxin
  * 2020/01/01 20:31
  */
+@SuppressWarnings({"AlibabaThreadPoolCreation", "AlibabaUndefineMagicConstant"})
 public class FixedThreadPoolTest {
 
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(4);
-//        ExecutorService executorService = Executors.newFixedThreadPool(4);
         for (int i = 0; i < 10; i++) {
             executorService.execute(new Task());
         }

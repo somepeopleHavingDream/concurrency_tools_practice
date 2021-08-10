@@ -6,6 +6,7 @@ package threadpool;
  * @author yangxin
  * 2020/01/01 20:05
  */
+@SuppressWarnings("AlibabaAvoidManuallyCreateThread")
 public class EveryTaskOneThread {
 
     public static void main(String[] args) {

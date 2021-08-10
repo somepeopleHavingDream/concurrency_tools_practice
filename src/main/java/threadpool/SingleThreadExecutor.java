@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
  * @author yangxin
  * 2020/01/01 20:55
  */
+@SuppressWarnings({"AlibabaThreadPoolCreation", "AlibabaUndefineMagicConstant"})
 public class SingleThreadExecutor {
 
     public static void main(String[] args) {
