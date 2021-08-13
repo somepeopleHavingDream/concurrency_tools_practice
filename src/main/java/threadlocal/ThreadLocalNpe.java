@@ -6,8 +6,10 @@ package threadlocal;
  * @author yangxin
  * 2020/01/01 18:58
  */
-public class ThreadLocalNPE {
-    private ThreadLocal<Long> longThreadLocal = new ThreadLocal<>();
+@SuppressWarnings("AlibabaAvoidManuallyCreateThread")
+public class ThreadLocalNpe {
+
+    private final ThreadLocal<Long> longThreadLocal = new ThreadLocal<>();
 
     private void set() {
         longThreadLocal.set(Thread.currentThread().getId());
@@ -18,11 +20,11 @@ public class ThreadLocalNPE {
     }
 
     public static void main(String[] args) {
-        ThreadLocalNPE threadLocalNPE = new ThreadLocalNPE();
-        System.out.println(threadLocalNPE.get());
+        ThreadLocalNpe threadLocalNpe = new ThreadLocalNpe();
+        System.out.println(threadLocalNpe.get());
         new Thread(() -> {
-            threadLocalNPE.set();
-            System.out.println(threadLocalNPE.get());
+            threadLocalNpe.set();
+            System.out.println(threadLocalNpe.get());
         }).start();
     }
 }

@@ -19,7 +19,6 @@ public class ThreadLocalNormalUsage05 {
     private String date(int seconds) {
         // 参数的单位是毫秒，从1970/01/01 00:00:00 gmt计时
         Date date = new Date(1000L * seconds);
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         SimpleDateFormat simpleDateFormat = ThreadSafeFormatter.simpleDateFormatThreadLocal.get();
         return simpleDateFormat.format(date);
     }
