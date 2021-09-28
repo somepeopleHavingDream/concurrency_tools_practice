@@ -8,19 +8,20 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
  * @author yangxin
  * 2020/01/02 16:44
  */
+@SuppressWarnings({"AlibabaAvoidManuallyCreateThread", "NonAtomicOperationOnVolatileField"})
 public class AtomicIntegerFieldUpdaterDemo implements Runnable {
 
     private static Candidate tom;
     private static Candidate peter;
 
-    private static final AtomicIntegerFieldUpdater<Candidate> scoreUpdater = AtomicIntegerFieldUpdater
+    private static final AtomicIntegerFieldUpdater<Candidate> SCORE_UPDATER = AtomicIntegerFieldUpdater
             .newUpdater(Candidate.class, "score");
 
     @Override
     public void run() {
         for (int i = 0; i < 10000; i++) {
             peter.score++;
-            scoreUpdater.getAndIncrement(tom);
+            SCORE_UPDATER.getAndIncrement(tom);
         }
     }
 
