@@ -8,6 +8,7 @@ import java.util.concurrent.*;
  * @author yangxin
  * 2020/02/21 22:33
  */
+@SuppressWarnings("AlibabaRemoveCommentedCode")
 public class FutureTaskDemo {
 
     public static void main(String[] args) {
@@ -32,6 +33,7 @@ public class FutureTaskDemo {
  * @author yangxin
  * 2020/02/21 22:33
  */
+@SuppressWarnings("AlibabaUndefineMagicConstant")
 class Task implements Callable<Integer> {
 
     @Override
