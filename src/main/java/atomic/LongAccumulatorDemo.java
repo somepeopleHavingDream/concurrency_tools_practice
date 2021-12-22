@@ -11,9 +11,11 @@ import java.util.stream.IntStream;
  * @author yangxin
  * 2020/01/02 21:09
  */
+@SuppressWarnings({"CommentedOutCode", "AlibabaRemoveCommentedCode", "AlibabaThreadPoolCreation", "StatementWithEmptyBody"})
 public class LongAccumulatorDemo {
+
     public static void main(String[] args) {
-        LongAccumulator longAccumulator = new LongAccumulator((x, y) -> x + y, 0);
+        LongAccumulator longAccumulator = new LongAccumulator(Long::sum, 0);
 //        longAccumulator.accumulate(1);
 //        longAccumulator.accumulate(2);
 
@@ -21,7 +23,6 @@ public class LongAccumulatorDemo {
         IntStream.range(1, 10).forEach(i -> executorService.submit(() -> longAccumulator.accumulate(i)));
         executorService.shutdown();
         while (!executorService.isTerminated()) {
-
         }
         System.out.println(longAccumulator.getThenReset());
     }
