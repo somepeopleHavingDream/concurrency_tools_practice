@@ -9,6 +9,7 @@ import java.util.concurrent.CyclicBarrier;
  * @author yangxin
  * 2020/02/20 20:24
  */
+@SuppressWarnings({"AlibabaUndefineMagicConstant", "AlibabaAvoidManuallyCreateThread"})
 public class CyclicBarrierDemo {
 
     public static void main(String[] args) {
