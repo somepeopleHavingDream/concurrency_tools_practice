@@ -28,6 +28,7 @@ public class CyclicBarrierDemo {
      * @author yangxin
      * 2020/07/09 14:39
      */
+    @SuppressWarnings("AlibabaAvoidMissUseOfMathRandom")
     static class Task implements Runnable {
 
         private final int id;

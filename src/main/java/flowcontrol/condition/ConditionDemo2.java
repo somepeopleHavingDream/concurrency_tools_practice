@@ -11,6 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author yangxin
  * 2020/02/20 17:13
  */
+@SuppressWarnings({"AlibabaRemoveCommentedCode", "AlibabaAvoidManuallyCreateThread"})
 public class ConditionDemo2 {
 
     private final int queueSize = 10;
@@ -25,7 +26,6 @@ public class ConditionDemo2 {
      * 2020/02/20 17:27
      */
     class Consumer implements Runnable {
-//    class Consumer extends Thread {
 
         @Override
         public void run() {
@@ -61,7 +61,6 @@ public class ConditionDemo2 {
      * 2020/02/20 20:05
      */
     class Producer implements Runnable {
-//    class Producer extends Thread {
 
         @Override
         public void run() {
@@ -96,8 +95,6 @@ public class ConditionDemo2 {
         ConditionDemo2 conditionDemo2 = new ConditionDemo2();
         Producer producer = conditionDemo2.new Producer();
         Consumer consumer = conditionDemo2.new Consumer();
-//        producer.start();
-//        consumer.start();
         new Thread(producer).start();
         new Thread(consumer).start();
     }
