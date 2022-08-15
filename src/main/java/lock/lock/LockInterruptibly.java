@@ -16,8 +16,8 @@ public class LockInterruptibly implements Runnable {
         LockInterruptibly lockInterruptibly = new LockInterruptibly();
         Thread thread0 = new Thread(lockInterruptibly);
         Thread thread1 = new Thread(lockInterruptibly);
-        thread0.start();
         thread1.start();
+        thread0.start();
 
         try {
             Thread.sleep(2000);

@@ -11,12 +11,13 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author yangxin
  * 2020/02/12 19:51
  */
+@SuppressWarnings({"AlibabaAvoidManuallyCreateThread", "AlibabaUndefineMagicConstant"})
 public class TryLockDeadlock implements Runnable {
 
     private int flag = 1;
 
-    private static final Lock lock1 = new ReentrantLock();
-    private static final Lock lock2 = new ReentrantLock();
+    private static final Lock LOCK_1 = new ReentrantLock();
+    private static final Lock LOCK_2 = new ReentrantLock();
 
     public static void main(String[] args) {
         TryLockDeadlock r1 = new TryLockDeadlock();
@@ -32,24 +33,24 @@ public class TryLockDeadlock implements Runnable {
         for (int i = 0; i < 100; i++) {
             if (flag == 1) {
                 try {
-                    if (lock1.tryLock(800, TimeUnit.MILLISECONDS)){
+                    if (LOCK_1.tryLock(800, TimeUnit.MILLISECONDS)){
                         try {
                             System.out.println("线程1获取到了锁1");
                             Thread.sleep(new Random().nextInt(1000));
 
-                            if (lock2.tryLock(800, TimeUnit.MILLISECONDS)) {
+                            if (LOCK_2.tryLock(800, TimeUnit.MILLISECONDS)) {
                                 try {
                                     System.out.println("线程1获取到了锁2");
                                     System.out.println("线程1成功获取到了两把锁");
                                     break;
                                 } finally {
-                                    lock2.unlock();
+                                    LOCK_2.unlock();
                                 }
                             } else {
                                 System.out.println("线程1获取锁2失败，已重试");
                             }
                         } finally {
-                            lock1.unlock();
+                            LOCK_1.unlock();
                             Thread.sleep(new Random().nextInt(1000));
                         }
                     } else {
@@ -62,24 +63,24 @@ public class TryLockDeadlock implements Runnable {
 
             if (flag == 0) {
                 try {
-                    if (lock2.tryLock(3000, TimeUnit.MILLISECONDS)){
+                    if (LOCK_2.tryLock(3000, TimeUnit.MILLISECONDS)){
                         try {
                             System.out.println("线程2获取到了锁2");
                             Thread.sleep(new Random().nextInt(1000));
 
-                            if (lock1.tryLock(3000, TimeUnit.MILLISECONDS)) {
+                            if (LOCK_1.tryLock(3000, TimeUnit.MILLISECONDS)) {
                                 try {
                                     System.out.println("线程2获取到了锁1");
                                     System.out.println("线程2成功获取到了两把锁");
                                     break;
                                 } finally {
-                                    lock1.unlock();
+                                    LOCK_1.unlock();
                                 }
                             } else {
                                 System.out.println("线程2获取锁1失败，已重试");
                             }
                         } finally {
-                            lock2.unlock();
+                            LOCK_2.unlock();
                             Thread.sleep(new Random().nextInt(1000));
                         }
                     } else {

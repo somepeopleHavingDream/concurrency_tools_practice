@@ -6,14 +6,15 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author yangxin
  * 2020/02/13 20:32
  */
+@SuppressWarnings({"CommentedOutCode", "AlibabaRemoveCommentedCode", "DuplicatedCode", "AlibabaAvoidManuallyCreateThread"})
 public class CinemaReadWrite {
 
-    private static final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
-    private static final ReentrantReadWriteLock.ReadLock readLock = reentrantReadWriteLock.readLock();
-    private static final ReentrantReadWriteLock.WriteLock writeLock = reentrantReadWriteLock.writeLock();
+    private static final ReentrantReadWriteLock REENTRANT_READ_WRITE_LOCK = new ReentrantReadWriteLock();
+    private static final ReentrantReadWriteLock.ReadLock READ_LOCK = REENTRANT_READ_WRITE_LOCK.readLock();
+    private static final ReentrantReadWriteLock.WriteLock WRITE_LOCK = REENTRANT_READ_WRITE_LOCK.writeLock();
 
     private static void read() {
-        readLock.lock();
+        READ_LOCK.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "得到了读锁，正在读取");
             Thread.sleep(1000);
@@ -21,12 +22,12 @@ public class CinemaReadWrite {
             e.printStackTrace();
         } finally {
             System.out.println(Thread.currentThread().getName() + "释放读锁");
-            readLock.unlock();
+            READ_LOCK.unlock();
         }
     }
 
     private static void write() {
-        writeLock.lock();
+        WRITE_LOCK.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "得到了写锁，正在写入");
             Thread.sleep(1000);
@@ -34,7 +35,7 @@ public class CinemaReadWrite {
             e.printStackTrace();
         } finally {
             System.out.println(Thread.currentThread().getName() + "释放写锁");
-            writeLock.unlock();
+            WRITE_LOCK.unlock();
         }
     }
 
