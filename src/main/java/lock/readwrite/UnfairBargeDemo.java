@@ -6,17 +6,17 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author yangxin
  * 2020/02/13 20:50
  */
+@SuppressWarnings({"AlibabaCommentsMustBeJavadocFormat", "DuplicatedCode", "AlibabaAvoidManuallyCreateThread", "AlibabaUndefineMagicConstant"})
 public class UnfairBargeDemo {
 
-//    private static final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock(true);
-    private static final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock(false);
+    private static final ReentrantReadWriteLock REENTRANT_READ_WRITE_LOCK = new ReentrantReadWriteLock(false);
 
-    private static final ReentrantReadWriteLock.ReadLock readLock = reentrantReadWriteLock.readLock();
-    private static final ReentrantReadWriteLock.WriteLock writeLock = reentrantReadWriteLock.writeLock();
+    private static final ReentrantReadWriteLock.ReadLock READ_LOCK = REENTRANT_READ_WRITE_LOCK.readLock();
+    private static final ReentrantReadWriteLock.WriteLock WRITE_LOCK = REENTRANT_READ_WRITE_LOCK.writeLock();
 
     private static void read() {
         System.out.println(Thread.currentThread().getName() + "开始尝试获取读锁");
-        readLock.lock();
+        READ_LOCK.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "得到读锁，正在读取");
             Thread.sleep(20);
@@ -24,13 +24,13 @@ public class UnfairBargeDemo {
             e.printStackTrace();
         } finally {
             System.out.println(Thread.currentThread().getName() + "释放读锁");
-            readLock.unlock();
+            READ_LOCK.unlock();
         }
     }
 
     private static void write() {
         System.out.println(Thread.currentThread().getName() + "开始尝试获取写锁");
-        writeLock.lock();
+        WRITE_LOCK.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "得到写锁，正在写入");
             Thread.sleep(20);
@@ -38,7 +38,7 @@ public class UnfairBargeDemo {
             e.printStackTrace();
         } finally {
             System.out.println(Thread.currentThread().getName() + "释放写锁");
-            writeLock.unlock();
+            WRITE_LOCK.unlock();
         }
     }
 

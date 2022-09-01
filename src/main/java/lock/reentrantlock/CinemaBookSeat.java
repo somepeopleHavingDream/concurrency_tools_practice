@@ -8,11 +8,13 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author yangxin
  * 2020/02/12 20:42
  */
+@SuppressWarnings("AlibabaAvoidManuallyCreateThread")
 public class CinemaBookSeat {
-    private static ReentrantLock lock = new ReentrantLock();
+
+    private static final ReentrantLock LOCK = new ReentrantLock();
 
     private static void bookSeat() {
-        lock.lock();
+        LOCK.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "开始预定座位");
             Thread.sleep(1000);
@@ -20,7 +22,7 @@ public class CinemaBookSeat {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            lock.unlock();
+            LOCK.unlock();
         }
     }
 

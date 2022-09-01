@@ -8,19 +8,20 @@ import java.util.concurrent.atomic.AtomicReference;
  * @author yangxin
  * 2020/02/15 20:19
  */
+@SuppressWarnings("AlibabaAvoidManuallyCreateThread")
 public class SpinLock {
-    private AtomicReference<Thread> sign = new AtomicReference<>();
+    private final AtomicReference<Thread> SIGN = new AtomicReference<>();
 
     public void lock() {
         Thread current = Thread.currentThread();
-        while (!sign.compareAndSet(null, current)) {
+        while (!SIGN.compareAndSet(null, current)) {
             System.out.println("自旋获取失败，再次尝试");
         }
     }
 
     public void unlock() {
         Thread current = Thread.currentThread();
-        sign.compareAndSet(current, null);
+        SIGN.compareAndSet(current, null);
     }
 
     public static void main(String[] args) {

@@ -9,6 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author yangxin
  * 2020/02/12 20:53
  */
+@SuppressWarnings({"AlibabaAvoidManuallyCreateThread", "BusyWait"})
 public class LockDemo {
     public static void main(String[] args) {
         new LockDemo().init();
@@ -44,7 +45,7 @@ public class LockDemo {
      * 2020/02/12 20:54
      */
     static class Outputer {
-        private Lock lock = new ReentrantLock();
+        private final Lock lock = new ReentrantLock();
 
         /**
          * 字符串打印方法，一个一个字符地打印

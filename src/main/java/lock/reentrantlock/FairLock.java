@@ -10,6 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author yangxin
  * 2020/02/13 20:04
  */
+@SuppressWarnings({"AlibabaAvoidManuallyCreateThread", "AlibabaUndefineMagicConstant"})
 public class FairLock {
     public static void main(String[] args) {
         PrintQueue printQueue = new PrintQueue();
@@ -30,7 +31,7 @@ public class FairLock {
 }
 
 class Job implements Runnable {
-    private PrintQueue printQueue;
+    private final PrintQueue printQueue;
 
     Job(PrintQueue printQueue) {
         this.printQueue = printQueue;
@@ -44,8 +45,9 @@ class Job implements Runnable {
     }
 }
 
+@SuppressWarnings({"DuplicatedCode", "unused"})
 class PrintQueue {
-    private Lock queueLock = new ReentrantLock(false);
+    private final Lock queueLock = new ReentrantLock(false);
 //    private Lock queueLock = new ReentrantLock(true);
 
     void printJob(Object document) {
