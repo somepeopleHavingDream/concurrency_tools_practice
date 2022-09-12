@@ -1,7 +1,6 @@
 package collections.queue;
 
 import java.util.Objects;
-import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -9,6 +8,7 @@ import java.util.concurrent.BlockingQueue;
  * 2020/02/19 21:18
  * @author yangxin
  */
+@SuppressWarnings("AlibabaAvoidManuallyCreateThread")
 public class ArrayBlockingQueueDemo {
 
     public static void main(String[] args) {
@@ -25,6 +25,7 @@ public class ArrayBlockingQueueDemo {
  * @author yangxin
  * 2020/02/19 21:28
  */
+@SuppressWarnings("AlibabaUndefineMagicConstant")
 class Interviewer implements Runnable {
 
     private final BlockingQueue<String> queue;
@@ -58,6 +59,7 @@ class Interviewer implements Runnable {
  * @author yangxin
  * 2020/02/19 21:28
  */
+@SuppressWarnings("AlibabaUndefineMagicConstant")
 class Consumer implements Runnable {
 
     private final BlockingQueue<String> queue;
