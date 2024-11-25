@@ -25,6 +25,7 @@ public class ConditionDemo2 {
      * @author yangxin
      * 2020/02/20 17:27
      */
+    @SuppressWarnings("CallToPrintStackTrace")
     class Consumer implements Runnable {
 
         @Override
@@ -41,7 +42,7 @@ public class ConditionDemo2 {
             while (true) {
                 lock.lock();
                 try {
-                    while (queue.size() == 0) {
+                    while (queue.isEmpty()) {
                         System.out.println("队列空，等待数据");
                         notEmpty.await();
                     }
@@ -60,6 +61,7 @@ public class ConditionDemo2 {
      * @author yangxin
      * 2020/02/20 20:05
      */
+    @SuppressWarnings("CallToPrintStackTrace")
     class Producer implements Runnable {
 
         @Override

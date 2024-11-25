@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
  * @author yangxin
  * 2020/02/22 21:45
  */
+@SuppressWarnings("CallToPrintStackTrace")
 public class Cache12 {
 
     private static final Computable<String, Integer> computable = new Cache10<>(new ExpensiveFunction());
@@ -21,7 +22,6 @@ public class Cache12 {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(100);
 
-        long start = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {
             executorService.submit(() -> {
                 Integer result = null;

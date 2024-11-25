@@ -23,6 +23,7 @@ public class SemaphoreDemo {
         executorService.shutdown();
     }
 
+    @SuppressWarnings("CallToPrintStackTrace")
     static class Task implements Runnable {
 
         @Override

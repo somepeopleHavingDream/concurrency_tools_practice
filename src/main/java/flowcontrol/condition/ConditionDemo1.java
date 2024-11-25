@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author yangxin
  * 2020/02/20 16:45
  */
-@SuppressWarnings("AlibabaAvoidManuallyCreateThread")
+@SuppressWarnings({"AlibabaAvoidManuallyCreateThread", "CallToPrintStackTrace"})
 public class ConditionDemo1 {
 
     private final ReentrantLock lock = new ReentrantLock();

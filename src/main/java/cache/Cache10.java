@@ -13,6 +13,7 @@ import java.util.concurrent.*;
  * @author yangxin
  * 2020/02/22 20:11
  */
+@SuppressWarnings({"DuplicatedCode", "unused", "CallToPrintStackTrace"})
 public class Cache10<T, R> implements Computable<T, R> {
 
     private final Map<T, Future<R>> cache = new ConcurrentHashMap<>();

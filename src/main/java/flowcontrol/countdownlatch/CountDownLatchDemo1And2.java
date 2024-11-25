@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
  * @author yangxin
  * 2020/02/20 13:46
  */
-@SuppressWarnings({"AlibabaThreadPoolCreation", "AlibabaAvoidMissUseOfMathRandom", "AlibabaUndefineMagicConstant"})
+@SuppressWarnings({"AlibabaThreadPoolCreation", "AlibabaAvoidMissUseOfMathRandom", "AlibabaUndefineMagicConstant", "CallToPrintStackTrace"})
 public class CountDownLatchDemo1And2 {
 
     public static void main(String[] args) throws InterruptedException {
@@ -18,21 +18,7 @@ public class CountDownLatchDemo1And2 {
         CountDownLatch end = new CountDownLatch(5);
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 5; i++) {
-            final int no = i + 1;
-            Runnable runnable = () -> {
-                System.out.println("No." + no + "准备完毕，等待发令枪");
-                try {
-                    begin.await();
-                    System.out.println("No." + no + "开始跑步了");
-
-                    Thread.sleep((long) (Math.random() * 10000));
-                    System.out.println("No." + no + "跑到了终点");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    end.countDown();
-                }
-            };
+            Runnable runnable = getRunnable(i, begin, end);
             executorService.submit(runnable);
         }
 
@@ -44,5 +30,23 @@ public class CountDownLatchDemo1And2 {
         end.await();
         System.out.println("所有人到达终点，比赛结束");
         executorService.shutdown();
+    }
+
+    private static Runnable getRunnable(int i, CountDownLatch begin, CountDownLatch end) {
+        final int no = i + 1;
+        return () -> {
+            System.out.println("No." + no + "准备完毕，等待发令枪");
+            try {
+                begin.await();
+                System.out.println("No." + no + "开始跑步了");
+
+                Thread.sleep((long) (Math.random() * 10000));
+                System.out.println("No." + no + "跑到了终点");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                end.countDown();
+            }
+        };
     }
 }

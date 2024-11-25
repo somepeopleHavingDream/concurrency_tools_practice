@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
  * @author yangxin
  * 2020/02/20 11:21
  */
-@SuppressWarnings({"AlibabaThreadPoolCreation", "AlibabaUndefineMagicConstant", "AlibabaAvoidMissUseOfMathRandom"})
+@SuppressWarnings({"AlibabaThreadPoolCreation", "AlibabaUndefineMagicConstant", "AlibabaAvoidMissUseOfMathRandom", "CallToPrintStackTrace"})
 public class CountDownLatchDemo1 {
 
     public static void main(String[] args) throws InterruptedException {
