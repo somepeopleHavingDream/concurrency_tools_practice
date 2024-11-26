@@ -6,12 +6,13 @@ import lombok.Data;
 import java.util.concurrent.*;
 
 /**
- * 演示get的超时方法，需要注意超时后处理，调用future.cancel()。
- * 演示cancel传入true和false的区别，代表是否中断正在执行的任务
+ * 演示 get 的超时方法，需要注意超时后处理，调用 future.cancel()。
+ * 演示 cancel 传入 true 和 false 的区别，代表是否中断正在执行的任务
  *
  * @author yangxin
  * 2020/02/21 21:56
  */
+@SuppressWarnings("unused")
 public class Timeout {
 
     private static final Ad DEFAULT_AD = new Ad("无网络时候的默认广告");

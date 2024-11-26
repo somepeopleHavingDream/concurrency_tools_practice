@@ -14,6 +14,7 @@ import java.util.concurrent.FutureTask;
  * @author yangxin
  * 2020/02/22 20:11
  */
+@SuppressWarnings("CallToPrintStackTrace")
 public class Cache7<T, R> implements Computable<T, R> {
 
     private final Map<T, Future<R>> cache = new ConcurrentHashMap<>();
@@ -27,7 +28,6 @@ public class Cache7<T, R> implements Computable<T, R> {
     public R compute(T arg) throws Exception {
         Future<R> future = cache.get(arg);
         if (future == null) {
-//            Callable<R> callable = () -> computable.compute(arg);
             FutureTask<R> futureTask = new FutureTask<>(() -> computable.compute(arg));
             future = futureTask;
             cache.put(arg, futureTask);

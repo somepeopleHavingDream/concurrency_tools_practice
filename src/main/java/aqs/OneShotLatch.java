@@ -3,12 +3,13 @@ package aqs;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
- * 自己用AQS实现一个简单的线程协作器
+ * 自己用 AQS 实现一个简单的线程协作器
  *
  * @author yangxin
  * 2020/02/21 10:19
  */
 public class OneShotLatch {
+
     private final Sync sync = new Sync();
 
     private void signal() {
@@ -16,7 +17,7 @@ public class OneShotLatch {
     }
 
     /**
-     * 想让线程等待的话，得让acquireShared方法返回负数，让线程排队去才行
+     * 想让线程等待的话，得让 acquireShared 方法返回负数，让线程排队去才行
      */
     private void await() {
         sync.acquireShared(0);

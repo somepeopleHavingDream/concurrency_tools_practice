@@ -8,7 +8,7 @@ import java.util.concurrent.*;
  * @author yangxin
  * 2020/02/21 22:33
  */
-@SuppressWarnings("AlibabaRemoveCommentedCode")
+@SuppressWarnings({"AlibabaRemoveCommentedCode", "CallToPrintStackTrace"})
 public class FutureTaskDemo {
 
     public static void main(String[] args) {

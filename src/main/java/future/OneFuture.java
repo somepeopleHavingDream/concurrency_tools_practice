@@ -9,6 +9,7 @@ import java.util.concurrent.*;
  * @author yangxin
  * 2020/02/021 20:55
  */
+@SuppressWarnings("CallToPrintStackTrace")
 public class OneFuture {
 
     public static void main(String[] args) {

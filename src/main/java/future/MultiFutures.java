@@ -11,6 +11,7 @@ import java.util.concurrent.*;
  * @author yangxin
  * 2020/02/21 21:17
  */
+@SuppressWarnings("CallToPrintStackTrace")
 public class MultiFutures {
 
     public static void main(String[] args) {

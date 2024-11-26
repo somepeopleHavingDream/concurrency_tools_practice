@@ -9,6 +9,7 @@ import java.util.concurrent.*;
  * @author yangxin
  * 2020/02/21 21:27
  */
+@SuppressWarnings("CallToPrintStackTrace")
 public class GetException {
 
     public static void main(String[] args) {
